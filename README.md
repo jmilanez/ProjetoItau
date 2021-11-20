@@ -1,6 +1,4 @@
-## Name_of_the_project
- 
-Projeto Sistema de Contas
+## Projeto Sistema de Contas
  
 ## Descrição do Projeto
  
