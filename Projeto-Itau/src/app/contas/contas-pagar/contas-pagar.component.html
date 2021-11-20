@@ -1,0 +1,83 @@
+<div class="row">
+    <h4 class="mb-3">Conta a Pagar</h4>
+    <div class="col-sm-6" *ngIf="contaSelecionado">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-outline-danger mb-2" style="float: right;" (click)="voltar()">Voltar</button>
+            </div>
+        </div>
+
+        <form [formGroup]="contaForm" (submit)="contaSubmit()">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="descricao" id="floatingInput"
+                    placeholder="Descrição" minlength="3" required>
+                <div *ngIf="contaForm.controls['descricao'].invalid" class="text-danger mt-2">
+                    <div *ngIf="contaForm.controls['descricao'].errors.required">
+                        O campo de descrição é obrigatório *
+                    </div>
+                    <div *ngIf="contaForm.controls['descricao'].errors.minlength">
+                        O campo de descrição é necessário ter no mínimo 3 caracteres *
+                    </div>
+                </div>
+                <label for="floatingInput">Descrição</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="valor" id="floatingInput" placeholder="Valor" required>
+                <div *ngIf="contaForm.controls['valor'].invalid" class="text-danger mt-2">
+                    <div *ngIf="contaForm.controls['valor'].errors.required">
+                        O campo valor da conta é obrigatório *
+                    </div>
+                    <div *ngIf="contaForm.controls['valor'].errors.pattern">
+                        O campo valor não pode conter caracteres *
+                    </div>
+                </div>
+                <label for="floatingInput">Valor</label>
+            </div>
+            <label for="formGroupExampleInput" class="form-label me-2">Conta Paga? </label>
+            <label class="switch">
+                <input class="switchStatus" type="checkbox" formControlName="status" value="false">
+                <span class="slider round"></span>
+            </label>
+            <div class="form-floating mb-3 d-none">
+                <input type="text" class="form-control" formControlName="tipo" id="floatingInput">
+            </div>
+            <div class="form-group">
+                <hr>
+                <button class="btn btn-success">Salvar</button>
+            </div>
+        </form>
+    </div>
+    <div [ngClass]="{'col-xl-6': contaSelecionado, 'col-xl-12 overflow-auto': !contaSelecionado}">
+        <div class="col-xl-12 mb-5">
+            <input class="rounded w-25 p-1 border-dark border-1 shadow" type="text" name="search" [(ngModel)]="searchText" placeholder="Pequisar conta...">
+            <button class="btn btn-success float-end mb-2" style="float: right;" (click)="cadastrarConta()">Cadastrar
+                Conta a Pagar</button>
+        </div>
+        <table class="table table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let conta of contas | filter:searchText | paginate : { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index"
+                    class.active="i == currentIndex">
+                    <td>{{conta.id}}</td>
+                    <td>{{conta.descricao}}</td>
+                    <td>{{conta.valor | currency:'BRL'}}</td>
+                    <td *ngIf="conta.status"><i class="bi bi-check-circle text-success"></i></td>
+                    <td *ngIf="!conta.status"><i class="bi bi-exclamation-triangle text-warning"></i></td>
+                    <td><button (click)="contaSelect(conta)" class="btn btn-warning me-1">Detalhes</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls class="float-end" [responsive]="true" previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onTableDataChange($event)"></pagination-controls>
+    </div>
+</div>

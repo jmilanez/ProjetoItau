@@ -1,0 +1,77 @@
+<div id="wrapper" *ngIf="!hasRoute('login') && !hasRoute('cadastro')">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0 menu-lateral">
+        <div class="container-fluid d-flex flex-column p-0">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" [routerLink]="['/dashboard']" routerLinkActive="active">
+                <div class="sidebar-brand-icon">
+                    <img src="assets/Logo_Itau.png" style="width: 40px; height: 40px;" />
+                </div>
+                <div class="sidebar-brand-text mx-3">
+                    <span>Sistema<br>de Contas</span>
+                </div>
+            </a>
+            <ul class="navbar-nav text-light" id="accordionSidebar">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="active">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/contas/contas-receber']" routerLinkActive="active">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <span>Contas a Receber</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/contas/contas-pagar']" routerLinkActive="active">
+                        <i class="bi bi-file-earmark-arrow-down"></i>
+                        <span>Contas a Pagar</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider my-0">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Usuários</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <div class="container-fluid">
+                    <ul class="navbar-nav flex-nowrap ms-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <div class="btn-group" dropdown>
+                                <button id="button-animated" dropdownToggle type="button" class="btn dropdown-toggle"
+                                    aria-controls="dropdown-animated">
+                                    <i class="bi bi-person-circle"></i> Usuário <span class="caret"></span>
+                                </button>
+                                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                                    aria-labelledby="button-animated" style="margin-left: -65px;">
+                                    <li role="menuitem">
+                                        <a class="dropdown-item" href="#"><i class="bi bi-person"></i> 
+                                            Perfil
+                                        </a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet *ngIf="hasRoute('login') || hasRoute('cadastro')"></router-outlet>
