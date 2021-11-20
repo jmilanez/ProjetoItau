@@ -7,7 +7,7 @@ Projeto Sistema de Contas
 * O sistema consiste em um controle de contas, com a possibilidade de adição de novas contas (a pagar ou a receber), a edição e visualização das mesmas.
 
  
-## Technology 
+## Tecnologias 
  
 Tecnologias utilizadas nesse projeto:
  
