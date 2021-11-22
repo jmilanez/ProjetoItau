@@ -24,7 +24,8 @@
                 <label for="floatingInput">Descrição</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="valor" id="floatingInput" placeholder="Valor" required>
+                <input type="text" class="form-control" formControlName="valor" id="floatingInput" placeholder="Valor"
+                    required>
                 <div *ngIf="contaForm.controls['valor'].invalid" class="text-danger mt-2">
                     <div *ngIf="contaForm.controls['valor'].errors.required">
                         O campo valor da conta é obrigatório *
@@ -45,13 +46,17 @@
             </div>
             <div class="form-group">
                 <hr>
-                <button class="btn btn-success">Salvar</button>
+                <button type="submit" [disabled]="contaForm.invalid" class="btn btn-success">Salvar conta</button>
+                <div class="alert alert-success mt-4" role="alert" *ngIf="mensagem">
+                    <i class="bi bi-check-circle-fill"></i> {{mensagem}}
+                </div>
             </div>
         </form>
     </div>
     <div [ngClass]="{'col-xl-6': contaSelecionado, 'col-xl-12 overflow-auto': !contaSelecionado}">
         <div class="col-xl-12 mb-5">
-            <input class="rounded w-25 p-1 border-dark border-1 shadow" type="text" name="search" [(ngModel)]="searchText" placeholder="Pequisar conta...">
+            <input class="rounded w-25 p-1 border-dark border-1 shadow" type="text" name="search"
+                [(ngModel)]="searchText" placeholder="Pequisar conta...">
             <button class="btn btn-success float-end mb-2" style="float: right;" (click)="cadastrarConta()">Cadastrar
                 Conta a Pagar</button>
         </div>
