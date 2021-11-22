@@ -11,11 +11,7 @@ Tecnologias utilizadas nesse projeto:
  
 * Angular 12
 * .NET Core + EF Core 
- 
-## Serviços utilizados
- 
-* Github
- 
+
 ## Autor
  
 * **João Milanez**: @jmilanez (https://github.com/jmilanez)
