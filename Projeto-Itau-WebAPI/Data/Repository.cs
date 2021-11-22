@@ -50,7 +50,7 @@ namespace Projeto_Itau_WebAPI.Data
             }
         }
 
-        public async Task<Conta> BuscarContasAsyncById(/*bool contasReceber, bool contasPagar,*/ int contaId)
+        public async Task<Conta> BuscarContasAsyncById(int contaId)
         {
             IQueryable<Conta> query = _dataContext.Contas;
             query = query.AsNoTracking().Where(c => c.Id == contaId);
@@ -61,7 +61,7 @@ namespace Projeto_Itau_WebAPI.Data
         {
             IQueryable<Conta> query = _dataContext.Contas;
 
-            query = query.AsNoTracking().Where(c => c.Tipo == 0);
+            query = query.AsNoTracking().Where(c => c.Tipo == 0 && c.Status == true);
             return await query.CountAsync();
         }
 
@@ -69,7 +69,7 @@ namespace Projeto_Itau_WebAPI.Data
         {
             IQueryable<Conta> query = _dataContext.Contas;
 
-            query = query.AsNoTracking().Where(c => c.Tipo == 1);
+            query = query.AsNoTracking().Where(c => c.Tipo == 1 && c.Status == true);
             return await query.CountAsync();
 
         }
