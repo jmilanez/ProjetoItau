@@ -34,7 +34,7 @@
                 </div>
                 <label for="floatingInput">Valor</label>
             </div>
-            <label for="formGroupExampleInput" class="form-label me-2">Conta Paga? </label>
+            <label for="formGroupExampleInput" class="form-label me-2">Conta Recebida? </label>
             <label class="switch">
                 <input class="switchStatus" type="checkbox" formControlName="status" value="false">
                 <span class="slider round"></span>
@@ -48,6 +48,9 @@
             <div class="form-group">
                 <hr>
                 <button type="submit" [disabled]="contaForm.invalid" class="btn btn-success">Salvar conta</button>
+                <div class="alert alert-success mt-4" role="alert" *ngIf="mensagem">
+                    <i class="bi bi-check-circle-fill"></i> {{mensagem}}
+                </div>
             </div>
         </form>
     </div>

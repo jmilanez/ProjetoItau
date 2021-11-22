@@ -15,6 +15,7 @@ export class ContasReceberComponent implements OnInit {
   public contas: Conta[];
   public modo = this.contaService.Adicionar;
   public searchText:any;
+  public mensagem: string;
 
   page = 1;
   count = 0;
@@ -62,6 +63,7 @@ export class ContasReceberComponent implements OnInit {
       this.contaService.Adicionar(conta).subscribe(
         conta => {
           this.carregarContas();
+          this.mensagem = "Conta cadastrada";
         },
         (erro: any) => {
           console.log(erro);
@@ -72,6 +74,7 @@ export class ContasReceberComponent implements OnInit {
       this.contaService.Atualizar(conta).subscribe(
         conta => {
           this.carregarContas();
+          this.mensagem = "Conta atualizada";
         },
         (erro: any) => {
           console.log(erro);
